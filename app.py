@@ -3,15 +3,20 @@ from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 from config import Config
 from sqlalchemy import or_
-from models import db
+
+# =====================================================
+#   APP + DB INIT
+# =====================================================
 
 app = Flask(__name__)
 app.config.from_object(Config)
 
 db = SQLAlchemy(app)
 
+# 🔥 Створення таблиць (працює і локально, і на Render)
 with app.app_context():
     db.create_all()
+
 
 # =====================================================
 #   MODELS
@@ -182,7 +187,7 @@ def logout():
 
 
 # =====================================================
-#   USER HOME (заявки)
+#   USER HOME — заявки
 # =====================================================
 
 @app.route("/user_home")
@@ -200,7 +205,7 @@ def user_home():
 
 
 # =====================================================
-#   ADMIN HOME (таблиця заявок)
+#   ADMIN HOME
 # =====================================================
 
 @app.route("/admin_home")
@@ -372,7 +377,7 @@ def create_admin():
 
 
 # =====================================================
-#   RUN APP
+#   RUN (LOCAL ONLY)
 # =====================================================
 
 if __name__ == "__main__":
