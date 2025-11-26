@@ -21,11 +21,24 @@
 
         <div class="auth-buttons">
             {% if session.get('user_id') %}
-                <a href="{{ url_for('user_home') }}" class="btn-login">Профіль</a>
+
+                <!-- Кнопка Профілю -->
+                <a
+                    href="{% if session['role'] == 'admin' %}{{ url_for('admin_home') }}{% else %}{{ url_for('user_home') }}{% endif %}"
+                    class="profile-icon"
+                    title="Профіль"
+                >
+                    👤
+                </a>
+
+                <!-- Вийти -->
                 <a href="{{ url_for('logout') }}" class="btn-register">Вийти</a>
+
             {% else %}
+
                 <a href="{{ url_for('login') }}" class="btn-login">Увійти</a>
                 <a href="{{ url_for('register') }}" class="btn-register">Реєстрація</a>
+
             {% endif %}
         </div>
     </div>
@@ -39,7 +52,6 @@
             <h2>Знайдіть ідеальне житло в Україні</h2>
             <p>Оренда, продаж, новобудови, комерційна нерухомість — все в одному місці</p>
 
-            <!-- ПОШУК ТЕПЕР ТАКОЖ ВЕДЕ ДО #listings -->
             <form class="search-box" action="/#listings" method="GET">
                 <input type="text" name="search" placeholder="Пошук по місту, району, типу..." value="{{ request.args.get('search', '') }}">
                 <button type="submit">Пошук</button>
@@ -86,10 +98,8 @@
 <section id="filters" class="container filters-box">
     <h2 class="section-title">Фільтри пошуку</h2>
 
-    <!-- ФОРМА ТЕПЕР ВЕДЕ ДО #listings -->
     <form method="GET" action="/#listings" class="filters-grid">
 
-        <!-- CITY -->
         <select name="city">
             <option value="">Місто</option>
 
@@ -99,8 +109,6 @@
             <option value="Харків">Харків</option>
         </select>
 
-
-        <!-- TYPE -->
         <select name="type">
             <option value="">Тип нерухомості</option>
 
@@ -111,8 +119,6 @@
             <option value="new">Новобудова</option>
         </select>
 
-
-        <!-- PRICE -->
         <input type="number" placeholder="Мін. ціна" name="min_price" value="{{ request.args.get('min_price', '') }}">
         <input type="number" placeholder="Макс. ціна" name="max_price" value="{{ request.args.get('max_price', '') }}">
 
