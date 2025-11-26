@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 from config import Config
 from sqlalchemy import or_
+import os
 
 # =====================================================
 #   APP + DB INIT
@@ -16,6 +17,18 @@ db = SQLAlchemy(app)
 # 🔥 Створення таблиць (працює і локально, і на Render)
 with app.app_context():
     db.create_all()
+
+
+@app.route("/debug")
+def debug():
+    try:
+        return {
+            "cwd": os.getcwd(),
+            "db_uri": app.config["SQLALCHEMY_DATABASE_URI"],
+            "tables": db.engine.table_names()
+        }
+    except Exception as e:
+        return {"error": str(e)}
 
 
 # =====================================================
