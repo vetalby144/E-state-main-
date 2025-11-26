@@ -18,7 +18,7 @@ def seed_properties():
                 property_type="flat",
                 price=15000,
                 description="Світла квартира з сучасним ремонтом, повністю мебльована, поруч метро та супермаркет.",
-                image_url="https://images.unsplash.com/photo-1600585154340-355c9cba26cd"
+                image_url="https://www.thespruce.com/thmb/vpHeK34Ht1RiEDKwaBeEolBBSwE%3D/1500x0/filters%3Ano_upscale%28%29%3Amax_bytes%28150000%29%3Astrip_icc%28%29/EleanorEmail-5aaf1c6ec5cf45eea0a4cd70ddbd4b21.png"
             ),
             # 2
             dict(
@@ -27,7 +27,7 @@ def seed_properties():
                 property_type="flat",
                 price=22000,
                 description="Новий будинок, підземний паркінг, закрита територія, розвинена інфраструктура.",
-                image_url="https://images.unsplash.com/photo-1600607687920-4e2a5345c9a5"
+                image_url="https://images.ctfassets.net/wlzmdirin2hy/3w511IDBqBidxFQi7WJ4y6/47a2e39a3a48923471909be0fd8c6d8a/LX_Texas76_HOM_Robinette_06.jpg"
             ),
             # 3
             dict(
@@ -72,7 +72,7 @@ def seed_properties():
                 property_type="house",
                 price=3500000,
                 description="Тихе місце, 2 поверхи, газ, електрика, свердловина, камін.",
-                image_url="https://images.unsplash.com/photo-1600585154363-67eb9e2e209d"
+                image_url="https://www.nichiha.com/uploads/7-Modern-Homes-Using-Wall-Paneling-Right/Nichiha-ArchitecturalBlock-Modern.jpg?t=1629137943"
             ),
             # 8
             dict(
@@ -144,7 +144,7 @@ def seed_properties():
                 property_type="land",
                 price=950000,
                 description="Гарний краєвид, тихий район, поряд забудова котеджного типу.",
-                image_url="https://images.unsplash.com/photo-1600093463592-9f61807aef11"
+                image_url="https://cdn2-property.estateapps.co.uk/files/property/398/image/c0ebd7a0-84fc-4b7f-81ea-2d74cd82d927/31890148_CAM04102G0-PR0207-STILL010.jpg"
             ),
             # 16
             dict(
@@ -153,7 +153,7 @@ def seed_properties():
                 property_type="land",
                 price=2100000,
                 description="Поруч траса, перспективна локація для бізнесу.",
-                image_url="https://images.unsplash.com/photo-1529516544815-25ef0c4561d9"
+                image_url="https://suburban.ge/images/shankevani_bg.png?v=5"
             ),
             # 17
             dict(
@@ -162,7 +162,7 @@ def seed_properties():
                 property_type="new",
                 price=19000,
                 description="Новобудова, перша здача, закрита територія, охорона, відеонагляд.",
-                image_url="https://images.unsplash.com/photo-1512914890250-353c97c9e7e2"
+                image_url="https://assets.allurausa.com/web/general-images/articles/7-ideas-for-designing-a-modern-apartment-building-exterior/_749xAUTO_crop_center-center_none/Screen-Shot-2022-03-25-at-12.46.11.png"
             ),
             # 18
             dict(
@@ -180,7 +180,7 @@ def seed_properties():
                 property_type="new",
                 price=21000,
                 description="Закритий комплекс, свій дворик, дитячий майданчик.",
-                image_url="https://images.unsplash.com/photo-1512914890250-353c97c9e7e2"
+                image_url="https://apxconstructiongroup.com/wp-content/uploads/2022/11/modern-apartment-building-designs-dusk.jpeg"
             ),
             # 20
             dict(
