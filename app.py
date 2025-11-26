@@ -14,23 +14,6 @@ app.config.from_object(Config)
 
 db = SQLAlchemy(app)
 
-# 🔥 Створення таблиць (працює і локально, і на Render)
-with app.app_context():
-    db.create_all()
-
-
-@app.route("/debug")
-def debug():
-    try:
-        return {
-            "cwd": os.getcwd(),
-            "db_uri": app.config["SQLALCHEMY_DATABASE_URI"],
-            "tables": db.engine.table_names()
-        }
-    except Exception as e:
-        return {"error": str(e)}
-
-
 # =====================================================
 #   MODELS
 # =====================================================
@@ -71,6 +54,11 @@ class Inquiry(db.Model):
 
     message = db.Column(db.Text, nullable=False)
     created_at = db.Column(db.DateTime, default=db.func.now())
+
+
+# 🔥 Створення таблиць (працює і локально, і на Render)
+with app.app_context():
+    db.create_all()
 
 
 # =====================================================
