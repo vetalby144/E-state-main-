@@ -3,3 +3,4 @@ Flask-Login
 Flask-SQLAlchemy
 python-dotenv
 Werkzeug
+gunicorn==21.2.0
