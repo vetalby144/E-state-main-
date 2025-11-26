@@ -48,7 +48,6 @@ class Inquiry(db.Model):
     __tablename__ = "inquiry"
 
     id = db.Column(db.Integer, primary_key=True)
-
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
     property_id = db.Column(db.Integer, db.ForeignKey("property.id"), nullable=False)
 
@@ -56,9 +55,19 @@ class Inquiry(db.Model):
     created_at = db.Column(db.DateTime, default=db.func.now())
 
 
-# 🔥 Створення таблиць (працює і локально, і на Render)
+# =====================================================
+#   CREATE TABLES + AUTO-SEED
+# =====================================================
+
 with app.app_context():
     db.create_all()
+
+    # AUTO-SEED PROPERTIES (runs only if DB is empty)
+    try:
+        from seed import seed_properties
+        seed_properties()
+    except Exception as e:
+        print("Seed skipped:", e)
 
 
 # =====================================================
@@ -67,7 +76,6 @@ with app.app_context():
 
 @app.route("/")
 def index():
-
     search = request.args.get("search")
     city = request.args.get("city")
     prop_type = request.args.get("type")
@@ -77,7 +85,6 @@ def index():
 
     query = Property.query
 
-    # Пошук
     if search and search.strip():
         pattern = f"%{search}%"
         query = query.filter(
@@ -88,7 +95,6 @@ def index():
             )
         )
 
-    # Фільтри
     if city:
         query = query.filter(Property.city == city)
 
@@ -101,7 +107,6 @@ def index():
     if max_price and max_price.isdigit():
         query = query.filter(Property.price <= int(max_price))
 
-    # Пагінація
     pagination = query.paginate(page=page, per_page=6, error_out=False)
     properties = pagination.items
 
@@ -188,7 +193,7 @@ def logout():
 
 
 # =====================================================
-#   USER HOME — заявки
+#   USER HOME
 # =====================================================
 
 @app.route("/user_home")
@@ -232,7 +237,7 @@ def property_details(property_id):
 
 
 # =====================================================
-#   USER: CREATE INQUIRY
+#   CREATE INQUIRY
 # =====================================================
 
 @app.route("/property/<int:property_id>/request", methods=["POST"])
@@ -261,7 +266,7 @@ def create_inquiry(property_id):
 
 
 # =====================================================
-#   ADMIN: DELETE INQUIRY
+#   DELETE INQUIRY (ADMIN)
 # =====================================================
 
 @app.route("/admin/inquiries/delete/<int:inquiry_id>", methods=["POST"])
@@ -348,33 +353,6 @@ def admin_delete_property(property_id):
 
     flash("Оголошення видалено!", "success")
     return redirect(url_for("admin_properties"))
-
-
-# =====================================================
-#   CLI: CREATE ADMIN
-# =====================================================
-
-@app.cli.command("create-admin")
-def create_admin():
-    username = input("Адмін логін: ").strip()
-    email = input("Адмін email: ").strip()
-    password = input("Пароль: ").strip()
-
-    if User.query.filter_by(email=email).first():
-        print("Email вже існує!")
-        return
-
-    admin = User(
-        username=username,
-        email=email,
-        password=generate_password_hash(password),
-        role="admin"
-    )
-
-    db.session.add(admin)
-    db.session.commit()
-
-    print("Адміністратора створено!")
 
 
 # =====================================================
