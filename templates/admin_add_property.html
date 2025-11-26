@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Додати оголошення</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="form-container" style="max-width:600px;">
+
+    <h2>Додати нове оголошення</h2>
+
+    <form method="POST">
+
+        <input type="text" name="title" placeholder="Назва" required>
+
+        <input type="text" name="city" placeholder="Місто" required>
+
+        <select name="property_type" class="role-select" required>
+            <option value="flat">Квартира</option>
+            <option value="house">Будинок</option>
+            <option value="commercial">Комерція</option>
+            <option value="land">Ділянка</option>
+            <option value="new">Новобудова</option>
+        </select>
+
+        <input type="number" name="price" placeholder="Ціна ₴" required>
+
+        <textarea name="description" placeholder="Опис"
+                  style="width:100%; height:120px; padding:12px; border-radius:8px;
+                         border:2px solid #d6dce3;"></textarea>
+
+        <input type="text" name="image_url" placeholder="URL фото" required>
+
+        <button class="submit-btn" type="submit">Створити</button>
+    </form>
+
+</div>
+</body>
+</html>

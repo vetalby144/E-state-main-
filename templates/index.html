@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>E-state — Платформа нерухомості</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="header">
+    <div class="container header-content">
+        <h1 class="logo">E<span>state</span></h1>
+
+        <nav class="nav">
+            <a href="#categories">Категорії</a>
+            <a href="#listings">Оголошення</a>
+            <a href="#filters">Фільтри</a>
+        </nav>
+
+        <div class="auth-buttons">
+            {% if session.get('user_id') %}
+                <a href="{{ url_for('user_home') }}" class="btn-login">Профіль</a>
+                <a href="{{ url_for('logout') }}" class="btn-register">Вийти</a>
+            {% else %}
+                <a href="{{ url_for('login') }}" class="btn-login">Увійти</a>
+                <a href="{{ url_for('register') }}" class="btn-register">Реєстрація</a>
+            {% endif %}
+        </div>
+    </div>
+</header>
+
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-overlay">
+        <div class="container hero-content">
+            <h2>Знайдіть ідеальне житло в Україні</h2>
+            <p>Оренда, продаж, новобудови, комерційна нерухомість — все в одному місці</p>
+
+            <!-- ПОШУК ТЕПЕР ТАКОЖ ВЕДЕ ДО #listings -->
+            <form class="search-box" action="/#listings" method="GET">
+                <input type="text" name="search" placeholder="Пошук по місту, району, типу..." value="{{ request.args.get('search', '') }}">
+                <button type="submit">Пошук</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+
+<!-- КАТЕГОРІЇ -->
+<section id="categories" class="container categories">
+    <h2 class="section-title">Категорії</h2>
+
+    <div class="categories-grid">
+        <a href="/?type=flat#listings" class="category-card">
+            <div class="icon">🏢</div>
+            <span>Квартири</span>
+        </a>
+
+        <a href="/?type=house#listings" class="category-card">
+            <div class="icon">🏠</div>
+            <span>Будинки</span>
+        </a>
+
+        <a href="/?type=commercial#listings" class="category-card">
+            <div class="icon">💼</div>
+            <span>Комерція</span>
+        </a>
+
+        <a href="/?type=land#listings" class="category-card">
+            <div class="icon">🌳</div>
+            <span>Ділянки</span>
+        </a>
+
+        <a href="/?type=new#listings" class="category-card">
+            <div class="icon">🏗</div>
+            <span>Новобудови</span>
+        </a>
+    </div>
+</section>
+
+
+<!-- ФІЛЬТРИ -->
+<section id="filters" class="container filters-box">
+    <h2 class="section-title">Фільтри пошуку</h2>
+
+    <!-- ФОРМА ТЕПЕР ВЕДЕ ДО #listings -->
+    <form method="GET" action="/#listings" class="filters-grid">
+
+        <!-- CITY -->
+        <select name="city">
+            <option value="">Місто</option>
+
+            <option value="Київ">Київ</option>
+            <option value="Львів">Львів</option>
+            <option value="Одеса">Одеса</option>
+            <option value="Харків">Харків</option>
+        </select>
+
+
+        <!-- TYPE -->
+        <select name="type">
+            <option value="">Тип нерухомості</option>
+
+            <option value="flat">Квартира</option>
+            <option value="house">Будинок</option>
+            <option value="commercial">Комерція</option>
+            <option value="land">Ділянка</option>
+            <option value="new">Новобудова</option>
+        </select>
+
+
+        <!-- PRICE -->
+        <input type="number" placeholder="Мін. ціна" name="min_price" value="{{ request.args.get('min_price', '') }}">
+        <input type="number" placeholder="Макс. ціна" name="max_price" value="{{ request.args.get('max_price', '') }}">
+
+        <button class="filter-btn" type="submit">Застосувати</button>
+    </form>
+</section>
+
+
+<!-- ОГОЛОШЕННЯ -->
+<section id="listings" class="container listings">
+    <h2 class="section-title">Оголошення</h2>
+
+    <div class="cards-grid">
+
+        {% for p in properties %}
+        <div class="estate-card">
+            <div class="estate-img" style="background-image:url('{{ p.image_url }}');"></div>
+
+            <div class="estate-info">
+                <h3>{{ p.title }}</h3>
+                <p class="location">{{ p.city }}</p>
+                <p class="price">{{ p.price }} ₴</p>
+
+                <a href="/property/{{ p.id }}" class="details-btn">Детальніше</a>
+            </div>
+        </div>
+        {% endfor %}
+
+        {% if properties|length == 0 %}
+            <p class="no-results">Нічого не знайдено.</p>
+        {% endif %}
+
+    </div>
+
+
+    <!-- ПАГІНАЦІЯ -->
+    {% if pagination.pages > 1 %}
+    <div style="text-align:center; margin-top:30px;">
+
+        {% if pagination.has_prev %}
+        <a class="details-btn"
+           href="{{ url_for('index',
+                page=pagination.prev_num,
+                search=request.args.get('search'),
+                city=request.args.get('city'),
+                type=request.args.get('type'),
+                min_price=request.args.get('min_price'),
+                max_price=request.args.get('max_price')
+           ) }}#listings">← Назад</a>
+        {% endif %}
+
+        {% for page_num in pagination.iter_pages() %}
+            {% if page_num %}
+                {% if page_num == pagination.page %}
+                    <strong style="margin:0 6px; font-size:18px; color:#002b5b;">{{ page_num }}</strong>
+                {% else %}
+                    <a href="{{ url_for('index',
+                        page=page_num,
+                        search=request.args.get('search'),
+                        city=request.args.get('city'),
+                        type=request.args.get('type'),
+                        min_price=request.args.get('min_price'),
+                        max_price=request.args.get('max_price')
+                    ) }}#listings"
+                    style="margin:0 6px; color:#004b8d; font-weight:bold; text-decoration:none;">
+                        {{ page_num }}
+                    </a>
+                {% endif %}
+            {% else %}
+                ...
+            {% endif %}
+        {% endfor %}
+
+        {% if pagination.has_next %}
+        <a class="details-btn"
+           href="{{ url_for('index',
+                page=pagination.next_num,
+                search=request.args.get('search'),
+                city=request.args.get('city'),
+                type=request.args.get('type'),
+                min_price=request.args.get('min_price'),
+                max_price=request.args.get('max_price')
+           ) }}#listings">Вперед →</a>
+        {% endif %}
+    </div>
+    {% endif %}
+
+</section>
+
+
+<footer class="footer">
+    <p>© 2025 E-state — Платформа нерухомості. Усі права захищені.</p>
+</footer>
+
+</body>
+</html>

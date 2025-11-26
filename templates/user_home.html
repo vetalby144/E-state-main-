@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Особистий кабінет</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="dashboard-box" style="max-width:1000px;">
+
+    <h1 style="margin-bottom:10px;">Особистий кабінет</h1>
+    <p>Вітаємо, {{ user.username }}!</p>
+
+    <a href="{{ url_for('logout') }}" class="logout-btn" style="margin-top:20px;">Вийти</a>
+
+    <hr style="margin:30px 0;">
+
+    <h2 style="color:#002b5b; margin-bottom:15px;">Ваші заявки</h2>
+
+    {% if inquiries|length == 0 %}
+        <p style="font-size:16px; color:#777;">Ви ще не залишали жодної заявки.</p>
+    {% else %}
+
+    <table style="width:100%; border-collapse:collapse;">
+        <thead>
+            <tr style="background:#002b5b; color:white;">
+                <th style="padding:12px;">Об'єкт</th>
+                <th style="padding:12px;">Повідомлення</th>
+                <th style="padding:12px;">Дата</th>
+            </tr>
+        </thead>
+
+        <tbody>
+        {% for item in inquiries %}
+            <tr style="border-bottom:1px solid #ddd;">
+
+                <td style="padding:10px; white-space:nowrap;">
+                    <strong>{{ item.property.title }}</strong><br>
+                    <small>{{ item.property.city }} — {{ item.property.price }} ₴</small><br>
+                    <a href="{{ url_for('property_details', property_id=item.property.id) }}" style="font-size:13px;">
+                        Переглянути
+                    </a>
+                </td>
+
+                <td style="padding:10px; max-width:280px; white-space:pre-wrap;">
+                    {{ item.message }}
+                </td>
+
+                <td style="padding:10px; white-space:nowrap;">
+                    {{ item.created_at.strftime("%d.%m.%Y %H:%M") }}
+                </td>
+
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {% endif %}
+</div>
+
+</body>
+</html>

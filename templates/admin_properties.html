@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Керування оголошеннями</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="dashboard-box" style="max-width:1100px;">
+
+    <h1 style="margin-bottom:10px;">Усі оголошення</h1>
+    <p style="color:#555; margin-bottom:20px;">Редагування та видалення нерухомості.</p>
+
+    <a href="{{ url_for('admin_home') }}"
+       style="display:inline-block; margin-bottom:20px; color:#002b5b;">
+       ← Назад в адмін-панель
+    </a>
+
+    <table style="width:100%; border-collapse:collapse;">
+        <thead>
+            <tr style="background:#002b5b; color:white;">
+                <th style="padding:12px;">ID</th>
+                <th style="padding:12px;">Назва</th>
+                <th style="padding:12px;">Місто</th>
+                <th style="padding:12px;">Ціна</th>
+                <th style="padding:12px;">Тип</th>
+                <th style="padding:12px;">Дії</th>
+            </tr>
+        </thead>
+
+        <tbody>
+        {% for item in properties %}
+            <tr style="border-bottom:1px solid #ddd;">
+                <td style="padding:10px;">{{ item.id }}</td>
+                <td style="padding:10px;">{{ item.title }}</td>
+                <td style="padding:10px;">{{ item.city }}</td>
+                <td style="padding:10px;">{{ item.price }} ₴</td>
+                <td style="padding:10px;">
+                    {% if item.property_type == 'flat' %}Квартира
+                    {% elif item.property_type == 'house' %}Будинок
+                    {% elif item.property_type == 'commercial' %}Комерція
+                    {% elif item.property_type == 'land' %}Ділянка
+                    {% elif item.property_type == 'new' %}Новобудова
+                    {% endif %}
+                </td>
+
+                <td style="padding:10px; white-space:nowrap;">
+                    <a href="{{ url_for('admin_edit_property', property_id=item.id) }}"
+                       style="margin-right:10px; color:#004b8d;">Редагувати</a>
+
+                    <form method="POST"
+                          action="{{ url_for('admin_delete_property', property_id=item.id) }}"
+                          style="display:inline-block;">
+                        <button style="background:#ff4d4d; color:white; padding:6px 12px; border:none; border-radius:6px;">
+                            Видалити
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+
+</body>
+</html>

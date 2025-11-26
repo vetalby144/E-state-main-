@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Реєстрація</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Реєстрація</h2>
+
+    <form method="POST">
+
+        <!-- ЛОГІН -->
+        <input type="text" name="username" placeholder="Логін" required>
+
+        <!-- EMAIL -->
+        <input type="email" name="email" placeholder="Email" required>
+
+        <!-- ПАРОЛЬ -->
+        <input type="password" name="password" placeholder="Пароль" required>
+
+        <!-- РОЛЬ -->
+        <label style="font-weight:600; margin-top:15px;">Оберіть роль:</label>
+
+        <select name="role" class="role-select" required>
+            <option value="user">Звичайний користувач</option>
+            <option value="admin">Адміністратор</option>
+        </select>
+
+        <!-- КНОПКА -->
+        <button class="submit-btn" type="submit">Зареєструватися</button>
+    </form>
+
+    <p style="text-align:center; margin-top:15px;">
+        Вже маєш акаунт? <a href="{{ url_for('login') }}">Увійти</a>
+    </p>
+</div>
+
+</body>
+</html>

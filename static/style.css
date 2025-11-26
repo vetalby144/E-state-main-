@@ -1,0 +1,358 @@
+/* =========================
+   Глобальні стилі
+========================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", Arial, sans-serif;
+  background-color: #f5f6fa;
+  color: #333;
+  line-height: 1.6;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* =========================
+   HEADER
+========================= */
+.header {
+  background-color: #002b5b;
+  padding: 15px 0;
+  color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.logo span {
+  color: #ffcc00;
+}
+
+.nav {
+  display: flex;
+  gap: 22px;
+  align-items: center;
+}
+
+.nav a {
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.nav a:hover {
+  color: #ffcc00;
+}
+
+/* AUTH BUTTONS */
+.auth-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.btn-login,
+.btn-register {
+  padding: 8px 18px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 15px;
+  transition: 0.3s;
+}
+
+/* login */
+.btn-login {
+  background: #ffffff;
+  color: #002b5b;
+}
+
+.btn-login:hover {
+  background: #e6e6e6;
+}
+
+/* register */
+.btn-register {
+  background: #ffcc00;
+  color: #002b5b;
+}
+
+.btn-register:hover {
+  background: #ffd633;
+}
+
+/* =========================
+   HERO (основна сторінка сервісу)
+========================= */
+.home-hero {
+  background: linear-gradient(135deg, #002b5b, #004b8d);
+  padding: 65px 0;
+  text-align: center;
+  color: #fff;
+}
+
+.home-title {
+  font-size: 38px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.home-subtitle {
+  font-size: 18px;
+  opacity: 0.95;
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+/* =========================
+   GRID CARDS (основні фічі)
+========================= */
+.cards-grid {
+  margin-top: 45px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
+}
+
+.dash-card {
+  background: #ffffff;
+  padding: 28px;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+  transition: 0.25s;
+}
+
+.dash-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 7px 20px rgba(0,0,0,0.16);
+}
+
+.icon-box {
+  font-size: 48px;
+  color: #002b5b;
+}
+
+.dash-card h3 {
+  margin-top: 15px;
+  color: #002b5b;
+}
+
+/* =========================
+   SECTION GLOBAL
+========================= */
+.section {
+  padding: 70px 0;
+}
+
+.section h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 30px;
+  color: #002b5b;
+}
+
+.bg-light {
+  background: #eef1f6;
+}
+
+.bg-dark {
+  background: #002b5b;
+  color: white;
+}
+
+/* =========================
+   STANDARD CARDS (services)
+========================= */
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  padding: 25px;
+  width: 300px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: 0.3s;
+  text-align: center;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+}
+
+.card h3 {
+  color: #002b5b;
+  margin-bottom: 10px;
+}
+
+/* =========================
+   ADVANTAGES
+========================= */
+.advantages-list {
+  list-style: none;
+  max-width: 650px;
+  font-size: 18px;
+  line-height: 1.8;
+  margin: 0 auto;
+}
+
+/* =========================
+   CTA (dark block)
+========================= */
+.contact {
+  text-align: center;
+}
+
+.btn {
+  background-color: #ffcc00;
+  color: #002b5b;
+  padding: 12px 25px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.btn:hover {
+  background-color: #ffd633;
+}
+
+.btn-light {
+  background-color: white;
+  color: #002b5b;
+}
+
+/* =========================
+   LOGIN & REGISTER FORMS
+========================= */
+.form-container {
+  max-width: 450px;
+  margin: 80px auto;
+  background: white;
+  padding: 35px;
+  border-radius: 14px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+}
+
+.form-container h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #002b5b;
+}
+
+.form-container input,
+.role-select {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 18px;
+  border: 2px solid #d8dce3;
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+}
+
+.form-container input:focus,
+.role-select:focus {
+  border-color: #002b5b;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 12px;
+  background: #ffcc00;
+  color: #002b5b;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+}
+
+.submit-btn:hover {
+  background: #ffd633;
+}
+
+/* =========================
+   USER / ADMIN DASHBOARD
+========================= */
+.dashboard-box {
+  max-width: 650px;
+  margin: 70px auto;
+  background: white;
+  padding: 40px;
+  border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+  text-align: center;
+}
+
+.dashboard-box h1 {
+  color: #002b5b;
+}
+
+.logout-btn {
+  display: inline-block;
+  background: #ffcc00;
+  padding: 10px 20px;
+  border-radius: 8px;
+  color: #002b5b;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.logout-btn:hover {
+  background: #ffd633;
+}
+
+/* =========================
+   FOOTER
+========================= */
+.footer {
+  background: #001f3f;
+  color: white;
+  text-align: center;
+  padding: 15px 0;
+  font-size: 14px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+  .header-content {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .nav {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
+}

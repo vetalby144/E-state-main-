@@ -1,0 +1,336 @@
+/* ===========================================
+   GLOBAL STYLES
+=========================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Inter", Arial, sans-serif;
+    background: #f7f9fc;
+    color: #1e1e1e;
+}
+
+.container {
+    width: 92%;
+    max-width: 1250px;
+    margin: 0 auto;
+}
+
+/* ===========================================
+   HEADER
+=========================================== */
+.header {
+    background: #002b5b;
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 900;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    color: white;
+    font-size: 30px;
+    font-weight: 800;
+}
+
+.logo span {
+    color: #ffcc00;
+}
+
+.nav {
+    display: flex;
+    gap: 28px;
+    align-items: center;
+}
+
+.nav a {
+    color: #ffffff;
+    font-size: 16px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: 0.25s;
+}
+
+.nav a:hover {
+    color: #ffcc00;
+}
+
+.auth-buttons {
+    display: flex;
+    gap: 12px;
+}
+
+.btn-login,
+.btn-register {
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.25s;
+    font-size: 15px;
+}
+
+.btn-login {
+    background: white;
+    color: #002b5b;
+}
+
+.btn-login:hover {
+    background: #e6e6e6;
+}
+
+.btn-register {
+    background: #ffcc00;
+    color: #002b5b;
+}
+
+.btn-register:hover {
+    background: #ffd633;
+}
+
+/* ===========================================
+   HERO SECTION
+=========================================== */
+.hero {
+    height: 62vh;
+    background: url("https://images.unsplash.com/photo-1582407947304-fd86f028f716?auto=format&fit=crop&w=1500&q=80") center/cover;
+    position: relative;
+}
+
+.hero-overlay {
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.hero-content {
+    text-align: center;
+    color: white;
+    max-width: 700px;
+}
+
+.hero-content h2 {
+    font-size: 42px;
+    font-weight: 700;
+    margin-bottom: 14px;
+}
+
+.hero-content p {
+    font-size: 18px;
+    opacity: 0.95;
+}
+
+.search-box {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.search-box input {
+    width: 420px;
+    padding: 14px 18px;
+    border-radius: 10px;
+    border: none;
+    font-size: 16px;
+}
+
+.search-box button {
+    background: #ffcc00;
+    color: #002b5b;
+    border: none;
+    font-size: 17px;
+    padding: 14px 26px;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.search-box button:hover {
+    background: #ffd633;
+}
+
+/* ===========================================
+   CATEGORY SECTION
+=========================================== */
+.categories {
+    padding: 60px 0 30px 0;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 35px;
+    color: #002b5b;
+}
+
+.categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 25px;
+}
+
+.category-card {
+    background: white;
+    border-radius: 14px;
+    padding: 30px 15px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+    color: #002b5b;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: 0.25s;
+}
+
+.category-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 22px rgba(0,0,0,0.15);
+}
+
+.category-card .icon {
+    font-size: 40px;
+    margin-bottom: 12px;
+}
+
+/* ===========================================
+   FILTERS
+=========================================== */
+.filters-box {
+    padding: 45px 0;
+}
+
+.filters-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 20px;
+    background: white;
+    padding: 25px;
+    border-radius: 14px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.filters-grid select,
+.filters-grid input {
+    padding: 12px;
+    border: 2px solid #d6dbe4;
+    border-radius: 8px;
+    font-size: 15px;
+    outline: none;
+    transition: 0.25s;
+}
+
+.filters-grid select:focus,
+.filters-grid input:focus {
+    border-color: #002b5b;
+}
+
+.filter-btn {
+    background: #002b5b;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    padding: 12px;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.filter-btn:hover {
+    background: #004b8d;
+}
+
+/* ===========================================
+   LISTING CARDS
+=========================================== */
+.cards-grid {
+    margin-top: 35px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+    gap: 30px;
+}
+
+.estate-card {
+    background: white;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 5px 14px rgba(0,0,0,0.10);
+    transition: 0.3s;
+}
+
+.estate-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.18);
+}
+
+.estate-img {
+    height: 210px;
+    background-size: cover;
+    background-position: center;
+}
+
+.estate-info {
+    padding: 20px;
+}
+
+.estate-info h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: #002b5b;
+}
+
+.location {
+    font-size: 15px;
+    color: #666;
+}
+
+.price {
+    font-size: 22px;
+    font-weight: 700;
+    margin: 10px 0 18px;
+    color: #1e73ff;
+}
+
+.details-btn {
+    display: inline-block;
+    background: #002b5b;
+    padding: 10px 20px;
+    color: white;
+    border-radius: 8px;
+    font-size: 15px;
+    text-decoration: none;
+    transition: 0.25s;
+}
+
+.details-btn:hover {
+    background: #004b8d;
+}
+
+/* ===========================================
+   FOOTER
+=========================================== */
+.footer {
+    margin-top: 70px;
+    background: #001f3f;
+    padding: 20px 0;
+    color: white;
+    text-align: center;
+    font-size: 15px;
+}

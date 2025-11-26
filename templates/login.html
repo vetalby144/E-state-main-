@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Вхід</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Вхід</h2>
+
+    {% if error %}
+        <p style="color: red; text-align:center;">{{ error }}</p>
+    {% endif %}
+
+    <form method="POST">
+        <input type="text" name="username" placeholder="Логін" required>
+        <input type="password" name="password" placeholder="Пароль" required>
+        <button class="submit-btn" type="submit">Увійти</button>
+    </form>
+
+    <p style="margin-top:15px; text-align:center;">
+        Немає акаунта? <a href="{{ url_for('register') }}">Зареєструватися</a>
+    </p>
+</div>
+
+</body>
+</html>

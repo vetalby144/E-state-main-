@@ -1,0 +1,15 @@
+{
+  "name": "e-state",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "serve templates"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "serve": "^14.2.5"
+  }
+}
